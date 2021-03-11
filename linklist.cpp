@@ -6,6 +6,7 @@ int next[10];
 //添加index节点添加节点p，值为value
 void add(int index, int p, int value)
 {
+    next[p] = next[index];
     next[index] = p;
     data[p] = value;
     return;
