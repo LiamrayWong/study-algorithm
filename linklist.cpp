@@ -1,28 +1,32 @@
-#include <vector>
-using namespace std;
+#include <iostream>
 
-//相当于JS中的对象，带有类型约束
-struct Node
+int data[10];
+int next[10];
+
+//添加index节点添加节点p，值为value
+void add(int index, int p, int value)
 {
-    //构造函数，创建Node对象时，传入data数据
-    Node(int data) : data(data), next(NULL) {}
-    int data;
-    Node *next;
-};
+    next[index] = p;
+    data[p] = value;
+    return;
+}
 
 int main()
 {
-    Node *head = NULL;
-    head = new Node(1);
-    head->next = new Node(2);
-    head->next->next = new Node(3);
-    head->next->next->next = new Node(4);
-    Node *p = head;
-    while (p != NULL)
+    //构造链表
+    int head = 1;
+    data[head] = 0;
+    add(1, 5, 1);
+    add(5, 3, 2);
+    add(3, 7, 3);
+    add(7, 9, 4);
+
+    //访问链表
+    int p = head;
+    while (p != 0)
     {
-        printf("%d->", p->data);
-        p = p->next;
+        printf("%d->", data[p]);
+        p = next[p];
     }
     printf("\n");
-    return 0;
 }
